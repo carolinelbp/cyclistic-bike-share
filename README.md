@@ -47,8 +47,6 @@ Memberships are crucial for Cyclistic’s long-term revenue and user loyalty. By
 
 ### Users take the most rides in September
 
-![Total Rides Taken Per Month](images/total-rides-taken-per-month.png)
-
 ```sql 
 
 -- This query counts number of rides per month
@@ -61,3 +59,10 @@ GROUP BY month
 ORDER BY month; 
 
 ```
+
+
+![Total Rides Taken Per Month](images/total-rides-taken-per-month.png)
+
+
+### Users spend the most time riding bikes in July
+
