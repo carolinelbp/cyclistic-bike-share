@@ -4,7 +4,7 @@
 **📈 Business Task**
 
 Identify how casual riders and annual members use fictional bike share service Cyclistic differently. Recommend marketing strategies to convert casual riders into riders with annual memberships.
-Line above<br><br>
+<br><br>
 
 **👩‍💼 Target Audience**
 
@@ -12,7 +12,7 @@ The key stakeholders are:
 - The Cyclistic Executive team
 - The Director of Marketing
 - The Marketing Analytics team
-Line above<br><br>
+<br><br>
 
 **🚀 Why It Matters**
 
@@ -24,14 +24,14 @@ Memberships are crucial for Cyclistic’s long-term revenue and user loyalty. By
 **🪄 Dataset**
 
 12 months of Cyclistic trip data (anonymised data from a Chicago ride share service for 2024).
-Line above<br><br>
+<br><br>
 
 **📊 Platforms Used**
 
 1. Initial data clean = Excel
 2. Process and analyze = SQL
 3. Visualize and present findings = Tableau. 
-Line above<br><br>
+<br><br>
 
 **🔎 Key Variables Used**
 
@@ -43,7 +43,7 @@ Line above<br><br>
 - member_casual (the type of user)
 - ride_length
 - text_day_of_week
-Line above<br><br>
+<br><br>
 
 **🧼 Data Cleaning**
 
