@@ -57,7 +57,7 @@ Memberships are crucial for Cyclistic’s long-term revenue and user loyalty. By
 
 ## Exploratory Analysis
 
-### Users take the most rides in September
+### Users take the most rides in September... 
 
 ```sql 
 
@@ -73,9 +73,9 @@ ORDER BY month;
 ```
 
 ![Total Rides Taken Per Month](images/total-rides-taken-per-month.png)
+<br><br>
 
-
-### Users spend the most time riding bikes in July
+### But they spend the most time riding bikes in July. 
 
 ```sql 
 
@@ -90,9 +90,9 @@ GROUP BY month;
 ```
 
 <insert bar graph?>
+<br><br>
 
-
-### Users take the longest rides, on average, on Sundays
+### Users take the longest rides, on average, on Sundays...
 
 ```sql 
 
@@ -109,13 +109,13 @@ ORDER BY number_day_of_week;
 ```
 
 <insert bar graph?>
+<br><br>
 
-
-### The most rides are taken at 6pm
+### And the most rides are taken at 6pm. 
 
 ```sql 
 
--- This query counts the rides taken each hour of the day
+-- This query counts rides taken each hour of the day
 
 SELECT 
 	EXTRACT(HOUR FROM started_at) AS hour_of_day,
@@ -126,3 +126,23 @@ GROUP BY hour_of_day;
 ```
 
 ![Total Rides Taken Per Time of Day](images/total-rides-taken-per-time-of-day.png)
+<br><br>
+
+### Which type of bike is preferred? Riders use electric bikes slightly more... 
+
+```sql 
+
+-- This query counts rides taken on each type of bike
+
+SELECT 
+	rideable_type,
+	COUNT(rideable_type) AS type_count
+FROM ride_method
+GROUP BY rideable_type
+ORDER BY type_count DESC;
+
+```
+
+![Total Rides Taken Per Bike Type](images/total-rides-taken-per-bike-type.png)
+<br><br>
+
