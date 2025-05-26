@@ -167,3 +167,22 @@ GROUP BY rideable_type;
 ![Average Ride Length Per Bike Type](images/average-ride-length-per-bike-type.png)
 <br><br>
 
+### Only 3.31% of bike rides are round trips. 
+
+```sql 
+
+-- This query counts, and calculates the percentage of, rides that are round trips
+
+SELECT 
+    COUNT(*) AS round_trips,
+	ROUND(COUNT(*) *100.0 / (SELECT COUNT(*) FROM ride_location), 2) AS percentage_of_total
+FROM ride_location
+WHERE start_station_id = end_station_id;
+
+```
+
+![Round Trips Percentage](round-trips-percentage.png)
+---
+
+## In-Depth Analysis & Modeling
+
