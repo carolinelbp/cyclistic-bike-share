@@ -181,7 +181,7 @@ WHERE start_station_id = end_station_id;
 
 ```
 
-![Round Trips Percentage](round-trips-percentage.png)
+![Round Trips Percentage](images/round-trips-percentage.png)
 ---
 
 ## In-Depth Analysis & Modeling
