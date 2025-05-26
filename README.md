@@ -144,5 +144,26 @@ ORDER BY type_count DESC;
 ```
 
 ![Total Rides Taken Per Bike Type](images/total-rides-taken-per-bike-type.png)
+
+Through further investigation in SQL, it seems electric scooters are only used in August and September - presumably as a trial of some kind. 
+<br><br>
+
+### However, users spend longer on classic bike rides, on average. 
+
+```sql 
+
+-- This query calculates the average ride length per bike type
+
+SELECT 
+    m.rideable_type,
+	AVG(ride_length) AS average_ride_length
+FROM ride_method AS m
+INNER JOIN ride_time AS t 
+	ON m.ride_id = t.ride_id
+GROUP BY rideable_type;
+
+```
+
+![Average Ride Length Per Bike Type](images/average-ride-length-per-bike-type.png)
 <br><br>
 
