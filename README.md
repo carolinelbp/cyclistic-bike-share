@@ -1,12 +1,12 @@
 # 🚲 Unlocking Member Growth: Cyclistic Bike Share User Analysis 🚲
 
 # Introduction
-### **📈 Business Task**
+### 📈 Business Task
 
 Identify how casual riders and annual members use fictional bike share service Cyclistic differently. Recommend marketing strategies to convert casual riders into riders with annual memberships.
 <br><br>
 
-### **👩‍💼 Target Audience**
+### 👩‍💼 Target Audience
 
 The key stakeholders are:
 - The Cyclistic Executive team
@@ -14,26 +14,26 @@ The key stakeholders are:
 - The Marketing Analytics team
 <br><br>
 
-### **🚀 Why It Matters**
+### 🚀 Why It Matters
 
 Memberships are crucial for Cyclistic’s long-term revenue and user loyalty. By understanding the behaviors and habits of casual riders, we can tailor strategies to encourage more conversions.
 
 ---
 
 # Data Overview
-### **🪄 Dataset**
+### 🪄 Dataset
 
 12 months of Cyclistic trip data (anonymised data from a Chicago ride share service for 2024).
 <br><br>
 
-### **📊 Platforms Used**
+### 📊 Platforms Used
 
 1. Initial data clean = Excel
 2. Process and analyze = SQL
 3. Visualize and present findings = Excel & Tableau. 
 <br><br>
 
-### **🔎 Key Variables Used**
+### 🔎 Key Variables Used
 
 - ride_id
 - rideable_type (classic bike / electric bike / electric scooter)
@@ -45,7 +45,7 @@ Memberships are crucial for Cyclistic’s long-term revenue and user loyalty. By
 - text_day_of_week
 <br><br>
 
-### **🧼 Data Cleaning**
+### 🧼 Data Cleaning
 
 - Added calculated columns. 
 - Fixed cell format issues. 
@@ -192,11 +192,12 @@ WHERE start_station_id = end_station_id;
 Once I understood my dataset really well, I moved on to analyse the differences between casual users and members. I used the most relevant discoveries to inform and formulate new marketing strategies moving forward. 
 
 ## 1. High-Level Usage Comparison
-### Members take more rides than casual riders. 
+
+### Total rides: What percentage of total rides are by members vs. casual users? 
 
 ```sql 
 
--- This query counts, and calculates the percentage of, rides taken by each type of user
+-- This query counts, and calculates the percentage of, rides taken per type of user
 
 SELECT
 	member_casual AS type_of_user,
@@ -208,4 +209,41 @@ GROUP BY type_of_user;
 ```
 
 ![Rides-Percentage-Per-Type_Of-User](images/rides-percentage-per-type-of-user.png)
+
+Members (61%) take more rides than casual users (39%). This suggests that the current membership deal offers enough value for frequent riders to commit to it. It also implies that members’ per-ride cost is much lower than casual users. 
+- **Marketing Action**: Target casual users who ride frequently (e.g. 4+ times a month) and may not realize the savings they would make by switching. 
+
 <br><br>
+
+## 2. Timing Patterns (When Do They Ride?)
+
+### Day of the week: Do casual riders favor weekends while members have a more consistent weekday pattern? 
+
+```sql 
+
+-- This query counts how many rides are taken each day of the week per type of user
+
+SELECT
+	m.member_casual,
+	t.text_day_of_week AS day_of_week,
+	COUNT(*) AS ride_count
+FROM ride_method AS m
+INNER JOIN ride_time AS t
+	ON m.ride_id = t.ride_id
+GROUP BY m.member_casual,
+	t.number_day_of_week,
+	day_of_week
+ORDER BY m.member_casual,
+	t.number_day_of_week; 
+
+```
+
+![Rides-Taken-Per-Day-of-Week-Per-User](images/rides-taken-per-day-of-week-per-user.png)
+
+Casual riders take fewer rides than members on weekdays. At weekends, the split is around 50/50 casual vs. member – so casual users take more rides at the weekend.
+- **Marketing Action**: Offer casual users the option to buy a discounted ride bundle. This can both encourage casual riders to ride more often and introduce them to the behavior of pre-purchasing ride time.
+- Create a new weekend membership tier where members will pay less but only have free use of the bikes at weekends. 
+
+
+<br><br>
+
