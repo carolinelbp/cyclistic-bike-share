@@ -221,7 +221,7 @@ Members (61%) take more rides than casual users (39%). This suggests that the cu
 
 ```sql 
 
--- This query counts the rides taken on average for each day of the week, split by type of user
+-- This query counts the rides taken on average each day of the week, split by type of user
 
 SELECT
 	t.text_day_of_week,
@@ -240,10 +240,38 @@ ORDER BY m.member_casual,
 
 ![Average-Rides-Per-Day-of-Week-Per-User](images/average-rides-per-day-of-week-per-user.png)
 
-Casual riders take fewer rides than members on weekdays. At weekends, the split is around 50/50 casual vs. member – so casual users take more rides at the weekend.
+Casual riders take fewer rides than members on weekdays. At weekends, the split is around 50/50 casual vs. member. This means casual users take more rides at the weekend.
 - **Marketing Action**: Create a new weekend membership tier where members will pay less but only have free use of the bikes at weekends. 
 
 <br><br>
 
 ### Time of day: Do casual users ride across the day while members ride during commuting hours? 
+
+TBC
+
+### Seasonality: Are there strong seasonal patterns in casual rider behavior that differ from members?
+
+```sql 
+
+-- This query calculates the percentage of total rides per month that were taken by casual users
+
+SELECT
+	DATE_TRUNC('month', t.started_at) AS ride_month,
+	COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) AS casual_rides,
+	COUNT(t.ride_id) AS total_rides,
+	(COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) * 100.0) / COUNT(m.ride_id) AS casual_ride_percentage
+FROM ride_time AS t
+INNER JOIN ride_method AS m
+	ON t.ride_id = m.ride_id
+GROUP BY ride_month
+ORDER BY ride_month;
+
+```
+
+![Casual-Rides-Percentage-Per-Month](images/casual-rides-percentage-per-month.png)
+
+Casual riders take fewer rides than members on weekdays. At weekends, the split is around 50/50 casual vs. member. This means casual users take more rides at the weekend.
+- **Marketing Action**: Create a new weekend membership tier where members will pay less but only have free use of the bikes at weekends. 
+
+<br><br>
 
