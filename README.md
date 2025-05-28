@@ -241,9 +241,9 @@ ORDER BY m.member_casual,
 ![Rides-Taken-Per-Day-of-Week-Per-User](images/rides-taken-per-day-of-week-per-user.png)
 
 Casual riders take fewer rides than members on weekdays. At weekends, the split is around 50/50 casual vs. member – so casual users take more rides at the weekend.
-- **Marketing Action**: Offer casual users the option to buy a discounted ride bundle. This can both encourage casual riders to ride more often and introduce them to the behavior of pre-purchasing ride time.
-- Create a new weekend membership tier where members will pay less but only have free use of the bikes at weekends. 
-
+- **Marketing Action**: Create a new weekend membership tier where members will pay less but only have free use of the bikes at weekends. 
 
 <br><br>
+
+### Time of day: Do casual users ride across the day while members ride during commuting hours? 
 
