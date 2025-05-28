@@ -217,6 +217,32 @@ Members (61%) take more rides than casual users (39%). This suggests that the cu
 
 ## 2. Timing Patterns (When Do They Ride?)
 
+### Seasonality: Are there strong seasonal patterns in casual rider behavior that differ from members?
+
+```sql 
+
+-- This query calculates the percentage of total rides per month that were taken by casual users
+
+SELECT
+	DATE_TRUNC('month', t.started_at) AS ride_month,
+	COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) AS casual_rides,
+	COUNT(t.ride_id) AS total_rides,
+	(COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) * 100.0) / COUNT(m.ride_id) AS casual_ride_percentage
+FROM ride_time AS t
+INNER JOIN ride_method AS m
+	ON t.ride_id = m.ride_id
+GROUP BY ride_month
+ORDER BY ride_month;
+
+```
+
+![Casual-Rides-Percentage-Per-Month](images/casual-rides-percentage-per-month.png)
+
+The total number of casual users’ rides increases during the summer months far more than members’ rides increases. If both user types' rides rose up and dropped off equally with the seasons, the percentage line would be 50% throughout. 
+- **Marketing Action**: Offer a seasonal deal that targets casual riders whose usage increases in summer, e.g. a three-month summer pass, or a free membership trial advertised before and during summer to capture casual rider motivation at its peak. 
+
+<br><br>
+
 ### Day of the week: Do casual riders favor weekends while members have a more consistent weekday pattern? 
 
 ```sql 
@@ -246,11 +272,7 @@ Casual riders take fewer rides than members on weekdays. At weekends, the split 
 <br><br>
 
 ### Time of day: Do casual users ride across the day while members ride during commuting hours? 
-
 TBC
-
-### Seasonality: Are there strong seasonal patterns in casual rider behavior that differ from members?
-
 ```sql 
 
 -- This query calculates the percentage of total rides per month that were taken by casual users
@@ -270,8 +292,9 @@ ORDER BY ride_month;
 
 ![Casual-Rides-Percentage-Per-Month](images/casual-rides-percentage-per-month.png)
 
-Casual riders take fewer rides than members on weekdays. At weekends, the split is around 50/50 casual vs. member. This means casual users take more rides at the weekend.
-- **Marketing Action**: Create a new weekend membership tier where members will pay less but only have free use of the bikes at weekends. 
+The total number of casual users’ rides increases during the summer months far more than members’ rides increases. If both user types' rides rose up and dropped off equally with the seasons, the percentage line would be 50% throughout. 
+- **Marketing Action**: Offer a seasonal deal that targets casual riders whose usage increases in summer, e.g. a three-month summer pass, or a free membership trial advertised before and during summer to capture casual rider motivation at its peak. 
 
 <br><br>
+
 
