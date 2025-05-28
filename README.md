@@ -221,24 +221,24 @@ Members (61%) take more rides than casual users (39%). This suggests that the cu
 
 ```sql 
 
--- This query counts how many rides are taken each day of the week per type of user
+-- This query counts the rides taken on average for each day of the week, split by type of user
 
 SELECT
+	t.text_day_of_week,
 	m.member_casual,
-	t.text_day_of_week AS day_of_week,
-	COUNT(*) AS ride_count
-FROM ride_method AS m
-INNER JOIN ride_time AS t
-	ON m.ride_id = t.ride_id
-GROUP BY m.member_casual,
+	COUNT(t.ride_id) / COUNT(DISTINCT DATE(t.started_at)) AS avg_ride_count -- this part assumes a ride is taken every day of 2024 - but this is a reasonable assumption given the nature of the dataset.
+FROM ride_time AS t
+INNER JOIN ride_method AS m
+	ON t.ride_id = m.ride_id
+GROUP BY t.text_day_of_week,
 	t.number_day_of_week,
-	day_of_week
+	m.member_casual
 ORDER BY m.member_casual,
-	t.number_day_of_week; 
+	t.number_day_of_week;
 
 ```
 
-![Rides-Taken-Per-Day-of-Week-Per-User](images/rides-taken-per-day-of-week-per-user.png)
+![Average-Rides-Per-Day-of-Week-Per-User](images/average-rides-per-day-of-week-per-user.png)
 
 Casual riders take fewer rides than members on weekdays. At weekends, the split is around 50/50 casual vs. member – so casual users take more rides at the weekend.
 - **Marketing Action**: Create a new weekend membership tier where members will pay less but only have free use of the bikes at weekends. 
