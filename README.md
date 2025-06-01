@@ -289,9 +289,8 @@ GROUP BY type_of_user, hour_of_day;
 
 ![Ride-Count-Per-Time-Of-Day-Per-User](images/ride-count-per-time-of-day-per-user.png)
 
-The total number of casual users’ rides increases during the summer months far more than members’ rides increases. If both user types' rides rose up and dropped off equally with the seasons, the percentage line would be 50% throughout. 
-- **Marketing Action**: Offer a seasonal deal that targets casual riders whose usage increases in summer, e.g. a three-month summer pass, or a free membership trial advertised before and during summer to capture casual rider motivation at its peak. 
+Casual riders’ rides increase throughout the day, peaking at 6pm before dropping off for the evening. As member rides peak significantly at 9am and 6pm, we could infer that they’re frequently using the bikes to commute. 
+- **Marketing Action**: Casual riders might not convert because they see Cyclistic as a short-trip commuter service rather than a leisure-friendly option. Shift marketing language and advertising imagery to emphasize how membership can help save money on long rides and evening outings too. 
 
 <br><br>
-
 
