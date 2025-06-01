@@ -221,7 +221,7 @@ Members (61%) take more rides than casual users (39%). This suggests that the cu
 
 ```sql 
 
--- This query calculates the percentage of total rides per month that were taken by casual users
+-- This query calculates the percentage of total rides per month taken by casual users
 
 SELECT
 	DATE_TRUNC('month', t.started_at) AS ride_month,
@@ -231,8 +231,7 @@ SELECT
 FROM ride_time AS t
 INNER JOIN ride_method AS m
 	ON t.ride_id = m.ride_id
-GROUP BY ride_month
-ORDER BY ride_month;
+GROUP BY ride_month;
 
 ```
 
@@ -272,25 +271,23 @@ Casual riders take fewer rides than members on weekdays. At weekends, the split 
 <br><br>
 
 ### Time of day: Do casual users ride across the day while members ride during commuting hours? 
-TBC
+
 ```sql 
 
--- This query calculates the percentage of total rides per month that were taken by casual users
+-- This query counts rides taken each hour of the day, split by type of user
 
 SELECT
-	DATE_TRUNC('month', t.started_at) AS ride_month,
-	COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) AS casual_rides,
-	COUNT(t.ride_id) AS total_rides,
-	(COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) * 100.0) / COUNT(m.ride_id) AS casual_ride_percentage
+	m.member_casual AS type_of_user,
+	EXTRACT(HOUR FROM t.started_at) AS hour_of_day,
+	COUNT(*) AS ride_count
 FROM ride_time AS t
 INNER JOIN ride_method AS m
 	ON t.ride_id = m.ride_id
-GROUP BY ride_month
-ORDER BY ride_month;
+GROUP BY type_of_user, hour_of_day;
 
 ```
 
-![Casual-Rides-Percentage-Per-Month](images/casual-rides-percentage-per-month.png)
+![Ride-Count-Per-Time-Of-Day-Per-User](images/ride-count-per-time-of-day-per-user.png)
 
 The total number of casual users’ rides increases during the summer months far more than members’ rides increases. If both user types' rides rose up and dropped off equally with the seasons, the percentage line would be 50% throughout. 
 - **Marketing Action**: Offer a seasonal deal that targets casual riders whose usage increases in summer, e.g. a three-month summer pass, or a free membership trial advertised before and during summer to capture casual rider motivation at its peak. 
