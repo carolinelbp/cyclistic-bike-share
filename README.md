@@ -23,7 +23,7 @@ Memberships are crucial for Cyclistic’s long-term revenue and user loyalty. By
 # Data Overview
 ### 🪄 Dataset
 
-12 months of Cyclistic trip data (anonymised data from a Chicago ride share service for 2024).
+12 months of 'Cyclistic' trip data (anonymised data from a Chicago ride share service for 2024).
 <br><br>
 
 ### 📊 Platforms Used
@@ -52,6 +52,11 @@ Memberships are crucial for Cyclistic’s long-term revenue and user loyalty. By
 - Removed invalid records. 
 - Moved records into the correct month's workbook. 
 - Checked for duplicate entries. 
+<br><br>
+
+### 🖼️ Presentation
+
+Although my analysis of this dataset was extensive, I'll present here a summary of the findings I made that lead to useful marketing suggestions. 
 
 ---
 
