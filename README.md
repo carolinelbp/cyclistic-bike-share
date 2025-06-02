@@ -54,10 +54,6 @@ Memberships are crucial for Cyclistic’s long-term revenue and user loyalty. By
 - Checked for duplicate entries. 
 <br><br>
 
-### 🖼️ Presentation
-
-Although my analysis of this dataset was extensive, I'll present here a summary of the findings I made that lead to useful marketing suggestions. 
-
 ---
 
 # Exploratory Analysis
@@ -72,39 +68,40 @@ Before honing in on member vs. casual rider comparisons, I explored general usag
 
 # In-Depth Analysis & Modeling
 
-Once I really understood my dataset, I analysed differences between casual users and members. I used the most relevant discoveries to formulate suggestions for marketing strategy. 
+Once I better understood the data, I focused on the most impactful differences between casual users and members. The insights below shaped my targeted marketing recommendations. 
 
-## 1. High-Level Usage Comparison
+## 1. Timing Patterns – When Do Users Ride?
 
-### Total rides: What percentage of total rides are by members vs. casual users? 
+Members take around 61% of all rides, suggesting a strong base of frequent users who enjoy a low per-ride cost. But casual riders show distinct timing behaviors compared to members, which presents targeted marketing opportunities. 
+
+### Key Findings
+
+**Seasonality**: Casual riders peak heavily in summer, while members stay more consistent throughout the year. 
+
+![Casual-Rides-Percentage-Per-Month](images/casual-rides-percentage-per-month.png)
+
+**Marketing Action*: Offer a three-month summer pass or free membership trial to capture casual rider interest at its peak. 
+
+
+**Day of Week**: Casual rider usage surges on weekends; members are more consistent across the week.
+
+![Average-Rides-Per-Day-of-Week-Per-User](images/average-rides-per-day-of-week-per-user.png)
+
+**Marketing Action*: Create a weekend-only membership tier for casual riders. 
+
+
+**Time of Day**: Members ride during peak commuting hours; casual riders increase throughout the day before dropping off after 6pm.
+
+![Ride-Count-Per-Time-Of-Day-Per-User](images/ride-count-per-time-of-day-per-user.png)
+
+**Marketing Action*: Shift marketing language and imagery toward how membership can save money on long rides and evening outings, not just commutes. 
+
+
+**Example Query**
 
 ```sql 
 
--- This query counts, and calculates the percentage of, rides taken per type of user
-
-SELECT
-	member_casual AS type_of_user,
-	COUNT(*),
-	ROUND(COUNT(*) *100.0 / (SELECT COUNT (*) FROM ride_method), 2) AS percentage_of_total
-FROM ride_method
-GROUP BY type_of_user;
-
-```
-
-![Rides-Percentage-Per-Type_Of-User](images/rides-percentage-per-type-of-user.png)
-
-Members (61%) take more rides than casual users (39%). This suggests that the current membership deal offers enough value for frequent riders to commit to it. It also implies that members’ per-ride cost is much lower than casual users. 
-- **Marketing Action**: Target casual users who ride frequently (e.g. 4+ times a month) and may not realize the savings they would make by switching. 
-
-<br><br>
-
-## 2. Timing Patterns (When Do They Ride?)
-
-### Seasonality: Are there strong seasonal patterns in casual rider behavior that differ from members?
-
-```sql 
-
--- This query calculates the percentage of total rides per month taken by casual users
+-- Calculates the % of all monthly rides taken by casual users
 
 SELECT
 	DATE_TRUNC('month', t.started_at) AS ride_month,
@@ -118,64 +115,7 @@ GROUP BY ride_month;
 
 ```
 
-![Casual-Rides-Percentage-Per-Month](images/casual-rides-percentage-per-month.png)
-
-The total number of casual users’ rides increases during the summer months far more than members’ rides increases. If both user types' rides rose up and dropped off equally with the seasons, the percentage line would be 50% throughout. 
-- **Marketing Action**: Offer a seasonal deal that targets casual riders whose usage increases in summer, e.g. a three-month summer pass, or a free membership trial advertised before and during summer to capture casual rider motivation at its peak. 
-
 <br><br>
 
-### Day of the week: Do casual riders favor weekends while members have a more consistent weekday pattern? 
-
-```sql 
-
--- This query counts the rides taken on average each day of the week, split by type of user
-
-SELECT
-	t.text_day_of_week,
-	m.member_casual,
-	COUNT(t.ride_id) / COUNT(DISTINCT DATE(t.started_at)) AS avg_ride_count -- this part assumes a ride is taken every day of 2024 - but this is a reasonable assumption given the nature of the dataset.
-FROM ride_time AS t
-INNER JOIN ride_method AS m
-	ON t.ride_id = m.ride_id
-GROUP BY t.text_day_of_week,
-	t.number_day_of_week,
-	m.member_casual
-ORDER BY m.member_casual,
-	t.number_day_of_week;
-
-```
-
-![Average-Rides-Per-Day-of-Week-Per-User](images/average-rides-per-day-of-week-per-user.png)
-
-Casual riders take fewer rides than members on weekdays. At weekends, the split is around 50/50 casual vs. member. This means casual users take more rides at the weekend.
-- **Marketing Action**: Create a new weekend membership tier where members will pay less but only have free use of the bikes at weekends. 
-
-<br><br>
-
-### Time of day: Do casual users ride across the day while members ride during commuting hours? 
-
-```sql 
-
--- This query counts rides taken each hour of the day, split by type of user
-
-SELECT
-	m.member_casual AS type_of_user,
-	EXTRACT(HOUR FROM t.started_at) AS hour_of_day,
-	COUNT(*) AS ride_count
-FROM ride_time AS t
-INNER JOIN ride_method AS m
-	ON t.ride_id = m.ride_id
-GROUP BY type_of_user, hour_of_day;
-
-```
-
-![Ride-Count-Per-Time-Of-Day-Per-User](images/ride-count-per-time-of-day-per-user.png)
-
-Casual riders’ rides increase throughout the day, peaking at 6pm before dropping off for the evening. As member rides peak significantly at 9am and 6pm, we could infer that they’re frequently using the bikes to commute. 
-- **Marketing Action**: Casual riders might not convert because they see Cyclistic as a short-trip commuter service rather than a leisure-friendly option. Shift marketing language and advertising imagery to emphasize how membership can help save money on long rides and evening outings too. 
-
-<br><br>
-
-## 3. Ride Duration (How Long Do They Ride For?)
+## 2. Ride Duration (How Long Do They Ride For?)
 
