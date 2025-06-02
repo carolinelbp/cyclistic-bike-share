@@ -62,95 +62,12 @@ Although my analysis of this dataset was extensive, I'll present here a summary 
 
 # Exploratory Analysis
 
-Before honing in on my business task, I needed to better understand my data by asking SQL some general questions. These are what I felt were my most interesting and important findings. 
+Before honing in on member vs. casual rider comparisons, I explored general usage trends: 
+- The busiest month for rides is September, but July has the longest total ride time.
+- Sundays have the longest rides, while the most rides overall are taken at 6pm.
+- Riders use electric bikes slightly more often, but spend longer on classic bike rides. 
+- Only 3.3% of rides start and end at the same station — round trips are rare.
 
-## Users take the most rides in September... 
-
-```sql 
-
--- This query counts the number of rides per month
-
-SELECT 
-	DATE_TRUNC('month', started_at) AS month,
-	COUNT(*) AS number_of_rides
-FROM ride_time
-GROUP BY month
-ORDER BY month; 
-
-```
-
-![Total Rides Taken Per Month](images/total-rides-taken-per-month.png)
-<br><br>
-
-## But they spend the most time riding bikes in July. 
-
-```sql 
-
--- This query calculates the total time spent on rides per month
-
-SELECT
-	DATE_TRUNC('month', started_at) AS month,
-	SUM(ride_length) AS time_spent_on_rides
-FROM ride_time
-GROUP BY month;
-
-```
-
-<insert bar graph?>
-<br><br>
-
-## Users take the longest rides, on average, on Sundays...
-
-```sql 
-
--- This query calculates the average ride duration per day of the week
-
-SELECT
-	text_day_of_week AS day_of_week,
-	AVG(ride_length) AS average_ride_duration
-FROM ride_time
-GROUP BY text_day_of_week,
-	number_day_of_week
-ORDER BY number_day_of_week;
-
-```
-
-<insert bar graph?>
-<br><br>
-
-## And the most rides are taken at 6pm. 
-
-```sql 
-
--- This query counts rides taken each hour of the day
-
-SELECT 
-	EXTRACT(HOUR FROM started_at) AS hour_of_day,
-	COUNT(*) AS ride_count
-FROM ride_time
-GROUP BY hour_of_day;
-
-```
-
-![Total Rides Taken Per Time of Day](images/total-rides-taken-per-time-of-day.png)
-<br><br>
-
-## Only 3.31% of bike rides are round trips. 
-
-```sql 
-
--- This query counts, and calculates the percentage of, rides that are round trips
-
-SELECT 
-    	COUNT(*) AS round_trips,
-	ROUND(COUNT(*) *100.0 / (SELECT COUNT(*) FROM ride_location), 2) AS percentage_of_total
-FROM ride_location
-WHERE start_station_id = end_station_id;
-
-```
-
-![Round Trips Percentage](images/round-trips-percentage.png)
-<br><br>
 ---
 
 # In-Depth Analysis & Modeling
