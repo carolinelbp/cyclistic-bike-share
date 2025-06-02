@@ -63,6 +63,7 @@ Before honing in on member vs. casual rider comparisons, I explored general usag
 - Sundays have the longest rides, while the most rides overall are taken at 6pm.
 - Riders use electric bikes slightly more often, but spend longer on classic bike rides. 
 - Only 3.3% of rides start and end at the same station — round trips are rare.
+<br><br>
 
 ---
 
@@ -73,31 +74,42 @@ Once I better understood the data, I focused on the most impactful differences b
 ## 1. Timing Patterns – When Do Users Ride?
 
 Members take around 61% of all rides, suggesting a strong base of frequent users who enjoy a low per-ride cost. But casual riders show distinct timing behaviors compared to members, which presents targeted marketing opportunities. 
+<br><br>
 
-### Key Findings
+### Seasonality
 
-**Seasonality**: Casual riders peak heavily in summer, while members stay more consistent throughout the year. 
+Casual riders peak heavily in summer, while members stay more consistent throughout the year. 
 
-![Casual-Rides-Percentage-Per-Month](images/casual-rides-percentage-per-month.png)
+<p align="center">
+  <img src="images/casual-rides-percentage-per-month.png" alt="Casual Rides Percentage Per Month" width="700">
+</p>
 
-**Marketing Action*: Offer a three-month summer pass or free membership trial to capture casual rider interest at its peak. 
+*Marketing Action*: Offer a three-month summer pass or free membership trial to capture casual rider interest at its peak. 
+<br><br>
 
+### Day of Week
 
-**Day of Week**: Casual rider usage surges on weekends; members are more consistent across the week.
+Casual rider usage surges on weekends; members are more consistent across the week.
 
-![Average-Rides-Per-Day-of-Week-Per-User](images/average-rides-per-day-of-week-per-user.png)
+<p align="center">
+  <img src="images/average-rides-per-day-of-week-per-user.png" alt="Average-Rides-Per-Day-of-Week-Per-User" width="700">
+</p>
 
-**Marketing Action*: Create a weekend-only membership tier for casual riders. 
+*Marketing Action*: Create a weekend-only membership tier for casual riders. 
+<br><br>
 
+### Time of Day
 
-**Time of Day**: Members ride during peak commuting hours; casual riders increase throughout the day before dropping off after 6pm.
+Members ride during peak commuting hours; casual riders increase throughout the day before dropping off after 6pm.
 
-![Ride-Count-Per-Time-Of-Day-Per-User](images/ride-count-per-time-of-day-per-user.png)
+<p align="center">
+  <img src="images/ride-count-per-time-of-day-per-user.png" alt="Ride-Count-Per-Time-Of-Day-Per-User" width="700">
+</p>
 
-**Marketing Action*: Shift marketing language and imagery toward how membership can save money on long rides and evening outings, not just commutes. 
+*Marketing Action*: Shift marketing language and imagery toward how membership can save money on long rides and evening outings, not just commutes. 
+<br><br>
 
-
-**Example Query**
+### Example Query:
 
 ```sql 
 
