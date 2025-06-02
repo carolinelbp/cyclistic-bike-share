@@ -72,7 +72,7 @@ Before honing in on member vs. casual rider comparisons, I explored general usag
 
 # In-Depth Analysis & Modeling
 
-Once I understood my dataset really well, I moved on to analyse the differences between casual users and members. I used the most relevant discoveries to inform and formulate new marketing strategies moving forward. 
+Once I really understood my dataset, I analysed differences between casual users and members. I used the most relevant discoveries to formulate suggestions for marketing strategy. 
 
 ## 1. High-Level Usage Comparison
 
