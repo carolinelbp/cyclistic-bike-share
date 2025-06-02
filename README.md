@@ -135,45 +135,6 @@ GROUP BY hour_of_day;
 ![Total Rides Taken Per Time of Day](images/total-rides-taken-per-time-of-day.png)
 <br><br>
 
-## Which type of bike is preferred? Riders use electric bikes slightly more... 
-
-```sql 
-
--- This query counts rides taken on each type of bike
-
-SELECT 
-	rideable_type,
-	COUNT(rideable_type) AS type_count
-FROM ride_method
-GROUP BY rideable_type
-ORDER BY type_count DESC;
-
-```
-
-![Total Rides Taken Per Bike Type](images/total-rides-taken-per-bike-type.png)
-
-Through further investigation in SQL, it seems electric scooters are only used in August and September - presumably as a trial of some kind. 
-<br><br>
-
-## However, they spend longer on classic bike rides, on average. 
-
-```sql 
-
--- This query calculates the average ride length per bike type
-
-SELECT 
-    	m.rideable_type,
-	AVG(ride_length) AS average_ride_length
-FROM ride_method AS m
-INNER JOIN ride_time AS t 
-	ON m.ride_id = t.ride_id
-GROUP BY rideable_type;
-
-```
-
-![Average Ride Length Per Bike Type](images/average-ride-length-per-bike-type.png)
-<br><br>
-
 ## Only 3.31% of bike rides are round trips. 
 
 ```sql 
