@@ -299,3 +299,5 @@ Casual riders’ rides increase throughout the day, peaking at 6pm before droppi
 
 <br><br>
 
+## 3. Ride Duration (How Long Do They Ride For?)
+
