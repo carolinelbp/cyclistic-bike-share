@@ -136,7 +136,9 @@ GROUP BY ride_month;
 
 ## 2. Ride Duration - How Long Do They Ride For?
 
-Some variables show little difference in casual rider behavior. I expected casual average ride length to increase in summer alongside overall ride volume, but it doesn't fluctuate much seasonally. However, casual riders show clear differences from members in other areas — taking longer rides on average and significantly more 60+ minute trips.
+Some variables show little difference in casual rider behavior. I expected casual average ride length to increase in summer alongside overall ride volume, but it doesn't fluctuate much seasonally. 
+
+However, casual riders show clear differences from members in other areas — taking longer rides on average and significantly more 60+ minute trips.
 <br><br>
 
 
