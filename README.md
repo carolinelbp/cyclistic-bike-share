@@ -136,6 +136,10 @@ GROUP BY ride_month;
 
 ## 2. Ride Duration - How Long Do They Ride For?
 
+Some variables show little difference in casual rider behavior. I expected casual average ride length to increase in summer alongside overall ride volume, but it doesn't fluctuate much seasonally. However, casual riders show clear differences from members in other areas — taking longer rides on average and significantly more 60+ minute trips.
+<br><br>
+
+
 ### Ride Length Average & Distribution
 
 **Overall Ride Length**: Casual riders average almost twice the ride length of members. 
@@ -192,3 +196,44 @@ GROUP BY member_casual, ride_length_bucket;
 ```
 
 <br><br>
+
+
+## 3. Bike Type Preferences - What Do They Ride?
+
+TBC
+<br><br>
+
+
+### Ride Length
+TBC
+Casual riders peak heavily in summer, while members stay more consistent throughout the year. 
+
+<p align="center">
+  <img src="images/casual-rides-percentage-per-month.png" alt="Casual Rides Percentage Per Month" width="700">
+</p>
+
+*Marketing Action*: Offer a three-month summer pass or free membership trial to capture casual rider interest at its peak. 
+<br><br>
+
+
+### Example Query:
+TBC
+```sql 
+
+-- Calculates the % of all monthly rides taken by casual users
+
+SELECT
+	DATE_TRUNC('month', t.started_at) AS ride_month,
+	COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) AS casual_rides,
+	COUNT(t.ride_id) AS total_rides,
+	(COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) * 100.0) / COUNT(m.ride_id) AS casual_ride_percentage
+FROM ride_time AS t
+INNER JOIN ride_method AS m
+	ON t.ride_id = m.ride_id
+GROUP BY ride_month;
+
+```
+
+<br><br>
+
+
