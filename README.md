@@ -143,12 +143,12 @@ Casual riders average almost twice the ride length of members.
 <br><br>
 
 
-### Day of Week
+### Distribution of Ride Lengths
 
 Casual rider usage surges on weekends; members are more consistent across the week.
 
 <p align="center">
-  <img src="images/average-rides-per-day-of-week-per-user.png" alt="Average-Rides-Per-Day-of-Week-Per-User" width="700">
+  <img src="images/ride-length-distribution.png" alt="Ride Length Distribution" width="700">
 </p>
 
 *Marketing Action*: Create a weekend-only membership tier for casual riders. 
