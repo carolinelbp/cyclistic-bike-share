@@ -158,34 +158,36 @@ These patterns suggest casual users are taking longer, potentially leisure-based
 
 ### Day of Week
 
-Members ride during peak commuting hours; casual riders increase throughout the day before dropping off after 6pm.
+Casual riders fluctuate more in average ride duration than members, taking longer rides at the weekends and dipping between Tuesdays and Thursdays. Casual riders may be riding more often for leisure, social outings, or special events like festivals. 
 
 <p align="center">
   <img src="images/ride-length-per-week-day.png" alt="Ride-Length-Per-Week-Day" width="700">
 </p>
 
-*Marketing Action*: Shift marketing language and imagery toward how membership can save money on long rides and evening outings, not just commutes. 
+*Marketing Action*: Offer a ‘weekend explorer pass’ with flat-rate pricing for extended rides. Partner with local events to offer bike-sharing discounts. Promote scenic routes and popular trails in the area. 
 <br><br>
 
-
-### Findings I Didn't Expect
-<tbc?>
 
 ### Example Query:
 
 ```sql 
 
--- Calculates the % of all monthly rides taken by casual users
+-- Calculates the distribution of ride lengths, split by user type
 
 SELECT
-	DATE_TRUNC('month', t.started_at) AS ride_month,
-	COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) AS casual_rides,
-	COUNT(t.ride_id) AS total_rides,
-	(COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) * 100.0) / COUNT(m.ride_id) AS casual_ride_percentage
-FROM ride_time AS t
-INNER JOIN ride_method AS m
-	ON t.ride_id = m.ride_id
-GROUP BY ride_month;
+	m.member_casual,
+	CASE
+		WHEN EXTRACT(EPOCH FROM ride_length) / 60 < 10 THEN '5-10 min'
+		WHEN EXTRACT(EPOCH FROM ride_length) / 60 < 20 THEN '10-20 min'
+		WHEN EXTRACT(EPOCH FROM ride_length) / 60 < 30 THEN '20-30 min'
+		WHEN EXTRACT(EPOCH FROM ride_length) / 60 < 60 THEN '30-60 min'
+		ELSE '60+ min'
+	END AS ride_length_bucket,
+	COUNT(*) AS ride_count
+FROM ride_method AS m
+INNER JOIN ride_time AS t
+	ON m.ride_id = t.ride_id
+GROUP BY member_casual, ride_length_bucket;
 
 ```
 
