@@ -129,5 +129,63 @@ GROUP BY ride_month;
 
 <br><br>
 
-## 2. Ride Duration (How Long Do They Ride For?)
+## 2. Ride Duration - How Long Do They Ride For?
 
+### Overall Ride Length
+
+Casual riders average almost twice the ride length of members. 
+
+<p align="center">
+  <img src="images/average-ride-length.png" alt="Average Ride Length" width="700">
+</p>
+
+*Marketing Action*: Emphasize the comfort of Cyclistic bikes. Promote the use of electric bikes for energy-preservation on longer rides. 
+<br><br>
+
+
+### Day of Week
+
+Casual rider usage surges on weekends; members are more consistent across the week.
+
+<p align="center">
+  <img src="images/average-rides-per-day-of-week-per-user.png" alt="Average-Rides-Per-Day-of-Week-Per-User" width="700">
+</p>
+
+*Marketing Action*: Create a weekend-only membership tier for casual riders. 
+<br><br>
+
+
+### Time of Day
+
+Members ride during peak commuting hours; casual riders increase throughout the day before dropping off after 6pm.
+
+<p align="center">
+  <img src="images/ride-count-per-time-of-day-per-user.png" alt="Ride-Count-Per-Time-Of-Day-Per-User" width="700">
+</p>
+
+*Marketing Action*: Shift marketing language and imagery toward how membership can save money on long rides and evening outings, not just commutes. 
+<br><br>
+
+
+### Findings I Didn't Expect
+<tbc?>
+
+### Example Query:
+
+```sql 
+
+-- Calculates the % of all monthly rides taken by casual users
+
+SELECT
+	DATE_TRUNC('month', t.started_at) AS ride_month,
+	COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) AS casual_rides,
+	COUNT(t.ride_id) AS total_rides,
+	(COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) * 100.0) / COUNT(m.ride_id) AS casual_ride_percentage
+FROM ride_time AS t
+INNER JOIN ride_method AS m
+	ON t.ride_id = m.ride_id
+GROUP BY ride_month;
+
+```
+
+<br><br>
