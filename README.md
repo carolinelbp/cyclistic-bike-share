@@ -76,6 +76,7 @@ Once I better understood the data, I focused on the most impactful differences b
 Members take around 61% of all rides, suggesting a strong base of frequent users who enjoy a low per-ride cost. But casual riders show distinct timing behaviors compared to members, which presents targeted marketing opportunities. 
 <br><br>
 
+
 ### Seasonality
 
 Casual riders peak heavily in summer, while members stay more consistent throughout the year. 
@@ -86,6 +87,7 @@ Casual riders peak heavily in summer, while members stay more consistent through
 
 *Marketing Action*: Offer a three-month summer pass or free membership trial to capture casual rider interest at its peak. 
 <br><br>
+
 
 ### Day of Week
 
@@ -98,6 +100,7 @@ Casual rider usage surges on weekends; members are more consistent across the we
 *Marketing Action*: Create a weekend-only membership tier for casual riders. 
 <br><br>
 
+
 ### Time of Day
 
 Members ride during peak commuting hours; casual riders increase throughout the day before dropping off after 6pm.
@@ -108,6 +111,7 @@ Members ride during peak commuting hours; casual riders increase throughout the 
 
 *Marketing Action*: Shift marketing language and imagery toward how membership can save money on long rides and evening outings, not just commutes. 
 <br><br>
+
 
 ### Example Query:
 
@@ -129,29 +133,26 @@ GROUP BY ride_month;
 
 <br><br>
 
+
 ## 2. Ride Duration - How Long Do They Ride For?
 
-### Overall Ride Length
+### Ride Length Average & Distribution
 
-Casual riders average almost twice the ride length of members. 
+**Overall Ride Length**: Casual riders average almost twice the ride length of members. 
 
 <p align="center">
   <img src="images/average-ride-length.png" alt="Average Ride Length" width="700">
 </p>
 
-*Marketing Action*: Emphasize the comfort of Cyclistic bikes. Promote the use of electric bikes for energy-preservation on longer rides. 
-<br><br>
-
-
-### Distribution of Ride Lengths
-
-Casual rider usage surges on weekends; members are more consistent across the week.
+**Distribution**: Casual riders take significantly more 60+ minute rides, while members dominate short trips under 20 minutes.
 
 <p align="center">
   <img src="images/ride-length-distribution.png" alt="Ride Length Distribution" width="700">
 </p>
 
-*Marketing Action*: Create a weekend-only membership tier for casual riders. 
+These patterns suggest casual users are taking longer, potentially leisure-based rides, which may require more comfort and endurance support.
+
+*Marketing Action*: Emphasize the comfort of Cyclistic bikes. Promote the use of electric bikes for energy-preservation on longer rides. 
 <br><br>
 
 
