@@ -156,12 +156,12 @@ These patterns suggest casual users are taking longer, potentially leisure-based
 <br><br>
 
 
-### Time of Day
+### Day of Week
 
 Members ride during peak commuting hours; casual riders increase throughout the day before dropping off after 6pm.
 
 <p align="center">
-  <img src="images/ride-count-per-time-of-day-per-user.png" alt="Ride-Count-Per-Time-Of-Day-Per-User" width="700">
+  <img src="images/ride-length-per-week-day.png" alt="Ride-Length-Per-Week-Day" width="700">
 </p>
 
 *Marketing Action*: Shift marketing language and imagery toward how membership can save money on long rides and evening outings, not just commutes. 
