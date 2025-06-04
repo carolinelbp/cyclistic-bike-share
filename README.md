@@ -202,9 +202,10 @@ GROUP BY member_casual, ride_length_bucket;
 
 ## 3. Bike Type Preferences - What Do They Ride?
 
-In some metrics, member and casual rider behavior is very similar. For example, I analysed bike type use by time of day using histograms. Both user types prefer classic bikes during the day and switch to electrics in the early morning and evening. 
+I found differences between users' average ride length on different bike types. However, in all other metrics I studied, member and casual rider behavior is very similar so there's no marketing opportunity. 
 
-While there’s no clear marketing opportunity to act on when rider behavior aligns, I did find differences between users' average ride length. 
+For example, I created histograms to analyse bike type use by time of day. Both user types prefer classic bikes during the day and switch to electrics in the early morning and evening. 
+
 <br><br>
 
 
