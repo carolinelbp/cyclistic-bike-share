@@ -142,7 +142,7 @@ However, casual riders show clear differences from members in other areas — ta
 <br><br>
 
 
-### Ride Length Average & Distribution
+### Ride Length - Average & Distribution
 
 **Overall Ride Length**: Casual riders average almost twice the ride length of members. 
 
@@ -202,37 +202,36 @@ GROUP BY member_casual, ride_length_bucket;
 
 ## 3. Bike Type Preferences - What Do They Ride?
 
-TBC
+In some metrics, member and casual rider behavior is very similar. For example, I analysed bike type use by time of day using histograms. Both user types prefer classic bikes during the day and switch to electrics in the early morning and evening. 
+
+While there’s no clear marketing opportunity to act on when rider behavior aligns, I did find differences between users' average ride length. 
 <br><br>
 
 
-### Ride Length
-TBC
-Casual riders peak heavily in summer, while members stay more consistent throughout the year. 
+### Average Ride Length
+
+Casual riders spend over twice as long on classic bike rides compared to electric bikes or scooters - unlike members, whose ride times are similar across all three types.
 
 <p align="center">
-  <img src="images/casual-rides-percentage-per-month.png" alt="Casual Rides Percentage Per Month" width="700">
+  <img src="images/average-ride-length-per-bike-type.png" alt="Average Ride Length Per Bike Type" width="700">
 </p>
 
-*Marketing Action*: Offer a three-month summer pass or free membership trial to capture casual rider interest at its peak. 
+*Marketing Action*: When offering rewards for longer bike rides, feature only marketing images of classic bikes. This should increase relatability to casual riders. 
 <br><br>
 
 
 ### Example Query:
-TBC
+
 ```sql 
 
--- Calculates the % of all monthly rides taken by casual users
-
 SELECT
-	DATE_TRUNC('month', t.started_at) AS ride_month,
-	COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) AS casual_rides,
-	COUNT(t.ride_id) AS total_rides,
-	(COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) * 100.0) / COUNT(m.ride_id) AS casual_ride_percentage
-FROM ride_time AS t
-INNER JOIN ride_method AS m
-	ON t.ride_id = m.ride_id
-GROUP BY ride_month;
+	m.member_casual AS user_type,
+	m.rideable_type,
+	ROUND(AVG(EXTRACT(EPOCH FROM t.ride_length) / 60), 2) AS avg_ride_length_minutes
+FROM ride_method AS m
+INNER JOIN ride_time AS t
+	ON m.ride_id = t.ride_id
+GROUP BY m.member_casual, rideable_type;
 
 ```
 
