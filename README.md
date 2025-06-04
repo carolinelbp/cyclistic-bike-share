@@ -205,11 +205,63 @@ GROUP BY member_casual, ride_length_bucket;
 I found differences between users' average ride length on different bike types. However, in all other metrics I studied, member and casual rider behavior is very similar so there's no marketing opportunity. 
 
 For example, I created histograms to analyse bike type use by time of day. Both user types prefer classic bikes during the day and switch to electrics in the early morning and evening. 
-
 <br><br>
 
 
 ### Average Ride Length
+
+Casual riders spend over twice as long on classic bike rides compared to electric bikes or scooters - unlike members, whose ride times are similar across all three types.
+
+<p align="center">
+  <img src="images/average-ride-length-per-bike-type.png" alt="Average Ride Length Per Bike Type" width="700">
+</p>
+
+*Marketing Action*: When offering rewards for longer bike rides, feature only marketing images of classic bikes. This should increase relatability to casual riders. 
+<br><br>
+
+
+### Example Query:
+
+```sql 
+
+-- Calculates average ride length per bike type, split by user type
+
+SELECT
+	m.member_casual AS user_type,
+	m.rideable_type,
+	ROUND(AVG(EXTRACT(EPOCH FROM t.ride_length) / 60), 2) AS avg_ride_length_minutes
+FROM ride_method AS m
+INNER JOIN ride_time AS t
+	ON m.ride_id = t.ride_id
+GROUP BY m.member_casual, rideable_type;
+
+```
+
+<br><br>
+
+
+## 4. Station Popularity & Routes - Where Do They Ride?
+
+TBC 
+<br><br>
+
+
+### Most Popular Routes
+
+There are no shared top 10 station-to-station trip routes between casual riders and members. 
+
+TBC - make the excel table then make a map in tableau! 
+
+<p align="center">
+  <img src="images/tbc.png" alt="TBC" width="700">
+</p>
+
+*Marketing Action*: TBC (rework and shorten) - 
+target the most popular stations for casual riders specifically with marketing material aimed at them. Having previously noticed patterns that suggest casual users ride for leisure, partner with companies near their most popular stations. Promote annual membership by including discounts at cafes, museums or park events near these stations. 
+<br><br>
+
+
+### Round Trip Percentage
 
 Casual riders spend over twice as long on classic bike rides compared to electric bikes or scooters - unlike members, whose ride times are similar across all three types.
 
