@@ -224,6 +224,8 @@ Casual riders spend over twice as long on classic bike rides compared to electri
 
 ```sql 
 
+-- Calculates average ride length per bike type, split by user type
+
 SELECT
 	m.member_casual AS user_type,
 	m.rideable_type,
