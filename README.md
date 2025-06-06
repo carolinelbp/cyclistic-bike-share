@@ -346,4 +346,6 @@ Casual riders favor longer, round-trip rides in scenic areas. Encourage conversi
 - Adding loop-based in-app challenges
 - Offering partner discounts at attractions near high-traffic stations. 
 
+These recommendations target the specific behaviors that differentiate casual riders from members. They use observed usage data on timing, location, and ride patterns to identify high-conversion opportunities.
+
 <br><br>
