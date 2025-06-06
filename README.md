@@ -81,9 +81,12 @@ Members take around 61% of all rides, suggesting a strong base of frequent users
 
 Casual riders peak heavily in summer, while members stay more consistent throughout the year. 
 
-<p align="center">
-  <img src="images/casual-rides-percentage-per-month.png" alt="Casual Rides Percentage Per Month" width="700">
-</p>
+<div align="center">
+  	<img src="images/casual-rides-percentage-per-month.png" 
+		alt="Casual Rides Percentage Per Month" 
+		width="700"
+		style="border: 1px solid #ccc; padding: 8px;">
+</div>
 
 *Marketing Action*: Offer a three-month summer pass or free membership trial to capture casual rider interest at its peak. 
 <br><br>
