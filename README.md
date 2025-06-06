@@ -323,15 +323,15 @@ LIMIT 10
 
 # Top 3 Marketing Recommendations
 
-**1. Launch a Summer Trial Membership**
+🚲 **1. Launch a Summer Trial Membership**
 
 Casual rider volume peaks in summer. Offer a three-month summer pass or free trial during this window to hook riders when usage is highest.
 
-**2. Introduce a Weekend-Only Membership Tier**
+🚲 **2. Introduce a Weekend-Only Membership Tier**
 
 Casual riders spike on weekends and take longer, leisure-focused rides. A discounted weekend membership can convert occasional users into repeat members.
 
-**3. Promote Scenic Ride Perks & Loop Challenges**
+🚲 **3. Promote Scenic Ride Perks & Loop Challenges**
 
 Casual riders favor longer, round-trip rides in scenic areas. Encourage conversion by:
 - Adding loop-based in-app challenges
