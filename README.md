@@ -248,14 +248,15 @@ TBC
 
 ### Most Popular Routes
 
-There are no shared top 10 station-to-station trip routes between casual riders and members. When viewed on a map of Chicago, 
+There are no shared top 10 station-to-station trip routes between casual riders and members. When viewed on a map of Chicago, the routes don't inhabit the same areas either. 
+
+Members ride the most in the Lakefront Trail/tourist zone of Chicago, which further supports the theory that casual riders are leisure- or sightseeing-focused. 
 
 <p align="center">
   <img src="images/top-rides-stations-per-user.png" alt="Top Rides Stations Per User" width="700">
 </p>
 
-*Marketing Action*: TBC (rework and shorten) - 
-target the most popular stations for casual riders specifically with marketing material aimed at them. Having previously noticed patterns that suggest casual users ride for leisure, partner with companies near their most popular stations. Promote annual membership by including discounts at cafes, museums or park events near these stations. 
+*Marketing Action*: Promote annual membership by including partnership discounts at cafes, museums or park events near riders' most popular stations. 
 <br><br>
 
 
@@ -264,7 +265,7 @@ target the most popular stations for casual riders specifically with marketing m
 Casual riders spend over twice as long on classic bike rides compared to electric bikes or scooters - unlike members, whose ride times are similar across all three types.
 
 <p align="center">
-  <img src="images/average-ride-length-per-bike-type.png" alt="Average Ride Length Per Bike Type" width="700">
+  <img src="images/percentage-of-round-trips-by-user-type.png" alt="Percentage of Round Trips Per User Type" width="700">
 </p>
 
 *Marketing Action*: When offering rewards for longer bike rides, feature only marketing images of classic bikes. This should increase relatability to casual riders. 
