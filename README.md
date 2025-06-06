@@ -247,6 +247,8 @@ I found stark differences between casual riders and members when looking at thei
 - most popular end stations
 - most popular A-to-B routes
 - percentage of rides that are round trips.
+
+This provided great opportunities to hone in on relevant casual user marketing strategies. 
 <br><br>
 
 
