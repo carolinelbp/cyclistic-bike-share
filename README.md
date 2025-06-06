@@ -252,6 +252,7 @@ There are no shared top 10 station-to-station trip routes between casual riders 
 
 Members ride the most in the Lakefront Trail/tourist zone of Chicago, which supports the theory that casual riders are leisure- or sightseeing-focused. 
 
+**Map of 10 Most Popular Routes Per User Type**
 <p align="center">
   <img src="images/top-rides-stations-per-user.png" alt="Top Rides Stations Per User" width="700">
 </p>
