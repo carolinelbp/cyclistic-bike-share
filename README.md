@@ -212,9 +212,6 @@ For example, I created histograms to analyse bike type use by time of day. Both 
 
 Casual riders spend over twice as long on classic bike rides compared to electric bikes or scooters - unlike members, whose ride times are similar across all three types.
 
-<p align="center">
-  <img src="images/average-ride-length-per-bike-type.png" alt="Average Ride Length Per Bike Type" width="700">
-</p>
 
 *Marketing Action*: When offering rewards for longer bike rides, feature only marketing images of classic bikes. This should increase relatability to casual riders. 
 <br><br>
