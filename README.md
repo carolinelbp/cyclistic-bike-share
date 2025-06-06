@@ -248,12 +248,10 @@ TBC
 
 ### Most Popular Routes
 
-There are no shared top 10 station-to-station trip routes between casual riders and members. 
-
-TBC - make the excel table then make a map in tableau! 
+There are no shared top 10 station-to-station trip routes between casual riders and members. When viewed on a map of Chicago, 
 
 <p align="center">
-  <img src="images/tbc.png" alt="TBC" width="700">
+  <img src="images/top-rides-stations-per-user.png" alt="Top Rides Stations Per User" width="700">
 </p>
 
 *Marketing Action*: TBC (rework and shorten) - 
