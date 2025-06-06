@@ -242,7 +242,11 @@ GROUP BY m.member_casual, rideable_type;
 
 ## 4. Station Popularity & Routes - Where Do They Ride?
 
-TBC 
+I found stark differences between casual riders and members when looking at their: 
+- most popular start stations
+- most popular end stations
+- most popular A-to-B routes
+- percentage of rides that are round trips.
 <br><br>
 
 
