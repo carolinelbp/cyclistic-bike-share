@@ -47,11 +47,11 @@ Memberships are crucial for Cyclistic’s long-term revenue and user loyalty. By
 
 ### 🧼 Data Cleaning
 
-- Added calculated columns. 
-- Fixed cell format issues. 
-- Removed invalid records. 
-- Moved records into the correct month's workbook. 
-- Checked for duplicate entries. 
+- Added calculated columns
+- Fixed cell format issues
+- Removed invalid records
+- Moved records into the correct month's workbook
+- Checked for duplicate entries
 <br><br>
 
 ---
