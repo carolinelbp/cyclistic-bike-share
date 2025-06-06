@@ -246,11 +246,11 @@ TBC
 <br><br>
 
 
-### Most Popular Routes
+### Most Popular A-to-B Routes
 
 There are no shared top 10 station-to-station trip routes between casual riders and members. When viewed on a map of Chicago, the routes don't inhabit the same areas either. 
 
-Members ride the most in the Lakefront Trail/tourist zone of Chicago, which further supports the theory that casual riders are leisure- or sightseeing-focused. 
+Members ride the most in the Lakefront Trail/tourist zone of Chicago, which supports the theory that casual riders are leisure- or sightseeing-focused. 
 
 <p align="center">
   <img src="images/top-rides-stations-per-user.png" alt="Top Rides Stations Per User" width="700">
@@ -262,13 +262,15 @@ Members ride the most in the Lakefront Trail/tourist zone of Chicago, which furt
 
 ### Round Trip Percentage
 
-Casual riders spend over twice as long on classic bike rides compared to electric bikes or scooters - unlike members, whose ride times are similar across all three types.
+Overall, members take more round trips in absolute numbers. But as a percentage of their total rides, casual users are over three times more likely to make a round trip than members. 
+
+Although the percentages are low, this further indicates that casual riders use bikes for leisure or exploration, rather than commuting from point A to point B.
 
 <p align="center">
   <img src="images/percentage-of-round-trips-by-user-type.png" alt="Percentage of Round Trips Per User Type" width="700">
 </p>
 
-*Marketing Action*: When offering rewards for longer bike rides, feature only marketing images of classic bikes. This should increase relatability to casual riders. 
+*Marketing Action*: Add in-app challenges to ride specific loops from popular stations for casual riders. 
 <br><br>
 
 
@@ -276,16 +278,43 @@ Casual riders spend over twice as long on classic bike rides compared to electri
 
 ```sql 
 
--- Calculates average ride length per bike type, split by user type
+-- Calculates the top 10 most common A-to-B routes for each user type
 
-SELECT
-	m.member_casual AS user_type,
-	m.rideable_type,
-	ROUND(AVG(EXTRACT(EPOCH FROM t.ride_length) / 60), 2) AS avg_ride_length_minutes
-FROM ride_method AS m
-INNER JOIN ride_time AS t
-	ON m.ride_id = t.ride_id
-GROUP BY m.member_casual, rideable_type;
+(
+SELECT m.member_casual AS user_type,
+	l.start_station_name,
+	l.end_station_name,
+	COUNT(*) AS trip_count
+FROM ride_location AS l
+INNER JOIN ride_method AS m
+	ON l.ride_id = m.ride_id
+WHERE start_station_name IS NOT NULL
+	AND end_station_name IS NOT NULL
+	AND start_station_name != end_station_name -- this excludes round trips
+	AND member_casual = 'casual'
+GROUP BY m.member_casual, l.start_station_name, l.end_station_name
+ORDER BY trip_count DESC
+LIMIT 10
+)
+
+UNION ALL -- used to stack separately for casual then member users, allowing direct comparison
+
+(
+SELECT m.member_casual AS user_type,
+	l.start_station_name,
+	l.end_station_name,
+	COUNT(*) AS trip_count
+FROM ride_location AS l
+INNER JOIN ride_method AS m
+	ON l.ride_id = m.ride_id
+WHERE start_station_name IS NOT NULL
+	AND end_station_name IS NOT NULL
+	AND start_station_name != end_station_name
+	AND member_casual = 'member'
+GROUP BY m.member_casual, l.start_station_name, l.end_station_name
+ORDER BY trip_count DESC
+LIMIT 10
+);
 
 ```
 
