@@ -52,6 +52,8 @@ Memberships are crucial for Cyclistic’s long-term revenue and user loyalty. By
 - Removed invalid records
 - Moved records into the correct month's workbook
 - Checked for duplicate entries
+
+After uploading the monthly CSVs into pgAdmin 4, I split the dataset into three relational tables — ride_method, ride_time, and ride_location — to improve query performance. I then used JOINs to access relevant fields throughout both the exploratory and in-depth analysis stages. 
 <br><br>
 
 ---
