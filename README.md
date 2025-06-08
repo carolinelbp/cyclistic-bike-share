@@ -123,7 +123,7 @@ SELECT
 	DATE_TRUNC('month', t.started_at) AS ride_month,
 	COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) AS casual_rides,
 	COUNT(t.ride_id) AS total_rides,
-	(COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) * 100.0) / COUNT(m.ride_id) AS casual_ride_percentage
+	(COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) * 100.0) / COUNT(m.ride_id) AS casual_ride_percentage -- this divides casual rides by total rides and presents as a percentage
 FROM ride_time AS t
 INNER JOIN ride_method AS m
 	ON t.ride_id = m.ride_id
@@ -181,14 +181,14 @@ Casual riders fluctuate more in average ride duration than members, taking longe
 -- Calculates the distribution of ride lengths, split by user type
 
 SELECT
-	m.member_casual,
+	m.member_casual, -- this field is the user type
 	CASE
 		WHEN EXTRACT(EPOCH FROM ride_length) / 60 < 10 THEN '5-10 min'
 		WHEN EXTRACT(EPOCH FROM ride_length) / 60 < 20 THEN '10-20 min'
 		WHEN EXTRACT(EPOCH FROM ride_length) / 60 < 30 THEN '20-30 min'
 		WHEN EXTRACT(EPOCH FROM ride_length) / 60 < 60 THEN '30-60 min'
 		ELSE '60+ min'
-	END AS ride_length_bucket,
+	END AS ride_length_bucket, -- I used these buckets for a histogram 
 	COUNT(*) AS ride_count
 FROM ride_method AS m
 INNER JOIN ride_time AS t
@@ -229,7 +229,7 @@ Casual riders spend over twice as long on classic bike rides compared to electri
 SELECT
 	m.member_casual AS user_type,
 	m.rideable_type,
-	ROUND(AVG(EXTRACT(EPOCH FROM t.ride_length) / 60), 2) AS avg_ride_length_minutes
+	ROUND(AVG(EXTRACT(EPOCH FROM t.ride_length) / 60), 2) AS avg_ride_length_minutes -- ride_length was in H:MM:SS format so I converted to minutes
 FROM ride_method AS m
 INNER JOIN ride_time AS t
 	ON m.ride_id = t.ride_id
@@ -306,7 +306,7 @@ ORDER BY trip_count DESC
 LIMIT 10
 )
 
-UNION ALL -- used to stack separately for casual then member users, allowing direct comparison
+UNION ALL -- I used to combine casual and member users in the same query, allowing direct comparison
 
 (
 SELECT m.member_casual AS user_type,
