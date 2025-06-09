@@ -314,7 +314,7 @@ GROUP BY user_type, start_station_name, end_station_name
 ORDER BY trip_count DESC
 LIMIT 10
 
-UNION ALL -- I used to combine casual and member users in the same query, allowing direct comparison
+UNION ALL -- to combine casual and member users in the same query, allowing direct comparison
 
 SELECT user_type,
 	start_station_name,
