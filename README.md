@@ -291,41 +291,40 @@ Although the percentages are low, this further indicates that casual riders use 
 
 -- Calculates the top 10 most common A-to-B routes for each user type
 
-(
-SELECT m.member_casual AS user_type,
-	l.start_station_name,
-	l.end_station_name,
-	COUNT(*) AS trip_count
-FROM ride_location AS l
-INNER JOIN ride_method AS m
-	ON l.ride_id = m.ride_id
-WHERE start_station_name IS NOT NULL
-	AND end_station_name IS NOT NULL
-	AND start_station_name != end_station_name -- this excludes round trips
+WITH base_data AS (
+	SELECT m.member_casual AS user_type,
+		l.start_station_name,
+		l.end_station_name
+	FROM ride_location AS l
+	INNER JOIN ride_method AS m
+		ON l.ride_id = m.ride_id
+	WHERE l.start_station_name IS NOT NULL
+		AND l.end_station_name IS NOT NULL
+		AND l.start_station_name != l.end_station_name -- this excludes round trips
 	AND member_casual = 'casual'
-GROUP BY m.member_casual, l.start_station_name, l.end_station_name
+) -- I used a CTE to avoid unnecessary replication
+
+SELECT user_type,
+	start_station_name,
+	end_station_name,
+	COUNT(*) AS trip_count
+FROM base_data
+WHERE user_type = 'casual'
+GROUP BY user_type, start_station_name, end_station_name
 ORDER BY trip_count DESC
 LIMIT 10
-)
 
 UNION ALL -- I used to combine casual and member users in the same query, allowing direct comparison
 
-(
-SELECT m.member_casual AS user_type,
-	l.start_station_name,
-	l.end_station_name,
+SELECT user_type,
+	start_station_name,
+	end_station_name,
 	COUNT(*) AS trip_count
-FROM ride_location AS l
-INNER JOIN ride_method AS m
-	ON l.ride_id = m.ride_id
-WHERE start_station_name IS NOT NULL
-	AND end_station_name IS NOT NULL
-	AND start_station_name != end_station_name
-	AND member_casual = 'member'
-GROUP BY m.member_casual, l.start_station_name, l.end_station_name
+FROM base_data
+WHERE user_type = 'member'
+GROUP BY user_type, start_station_name, end_station_name
 ORDER BY trip_count DESC
-LIMIT 10
-);
+LIMIT 10;
 
 ```
 <br><br>
