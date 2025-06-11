@@ -216,14 +216,21 @@ Members ride during peak commuting hours; casual riders increase throughout the 
 -- Calculates the % of all monthly rides taken by casual users
 
 SELECT
-	DATE_TRUNC('month', t.started_at) AS ride_month,
-	COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) AS casual_rides,
-	COUNT(t.ride_id) AS total_rides,
-	(COUNT(CASE WHEN m.member_casual = 'casual' THEN m.ride_id END) * 100.0) / COUNT(m.ride_id) AS casual_ride_percentage -- this divides casual rides by total rides and presents as a percentage
-FROM ride_time AS t
-INNER JOIN ride_method AS m
-	ON t.ride_id = m.ride_id
-GROUP BY ride_month;
+	ride_month,
+	casual_rides,
+	total_rides,
+	ROUND((casual_rides * 100.0) / total_rides, 2) AS casual_ride_percentage
+FROM (
+	SELECT
+		DATE_TRUNC('month', t.started_at) AS ride_month,
+		COUNT(CASE WHEN m.member_casual = 'casual' THEN 1 END) AS casual_rides,
+		COUNT(*) AS total_rides
+	FROM ride_time AS t
+	INNER JOIN ride_method AS m
+		ON t.ride_id = m.ride_id
+	GROUP BY ride_month
+) AS monthly_counts
+ORDER BY ride_month;
 
 ```
 
