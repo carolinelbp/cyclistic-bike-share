@@ -122,7 +122,8 @@ Although the percentages are low, this further indicates that casual riders use 
 
 -- Calculates the top 10 most common A-to-B routes for each user type
 
--- I used a CTE to avoid unnecessary duplication, as the following data applies to both user types: 
+-- I used a CTE to avoid unnecessary duplication, as the following data applies to both user types
+
 WITH base_data AS (
 	SELECT m.member_casual AS user_type,
 		l.start_station_name,
