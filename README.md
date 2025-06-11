@@ -122,6 +122,7 @@ Although the percentages are low, this further indicates that casual riders use 
 
 -- Calculates the top 10 most common A-to-B routes for each user type
 
+-- I used a CTE to avoid unnecessary duplication, as the following data applies to both user types: 
 WITH base_data AS (
 	SELECT m.member_casual AS user_type,
 		l.start_station_name,
@@ -132,30 +133,33 @@ WITH base_data AS (
 	WHERE l.start_station_name IS NOT NULL
 		AND l.end_station_name IS NOT NULL
 		AND l.start_station_name != l.end_station_name -- this excludes round trips
-	AND member_casual = 'casual'
-) -- I used a CTE to avoid unnecessary replication
+)
 
-SELECT user_type,
-	start_station_name,
-	end_station_name,
-	COUNT(*) AS trip_count
-FROM base_data
-WHERE user_type = 'casual'
-GROUP BY user_type, start_station_name, end_station_name
-ORDER BY trip_count DESC
-LIMIT 10
+SELECT * FROM (
+	SELECT user_type,
+		start_station_name,
+		end_station_name,
+		COUNT(*) AS trip_count
+	FROM base_data
+	WHERE user_type = 'casual'
+	GROUP BY user_type, start_station_name, end_station_name
+	ORDER BY trip_count DESC
+	LIMIT 10
+) AS casual_10
 
-UNION ALL -- to combine casual and member users in the same query, allowing direct comparison
+UNION ALL -- to combine casual and member users, allowing direct comparison
 
-SELECT user_type,
-	start_station_name,
-	end_station_name,
-	COUNT(*) AS trip_count
-FROM base_data
-WHERE user_type = 'member'
-GROUP BY user_type, start_station_name, end_station_name
-ORDER BY trip_count DESC
-LIMIT 10;
+SELECT * FROM (
+	SELECT user_type,
+		start_station_name,
+		end_station_name,
+		COUNT(*) AS trip_count
+	FROM base_data
+	WHERE user_type = 'member'
+	GROUP BY user_type, start_station_name, end_station_name
+	ORDER BY trip_count DESC
+	LIMIT 10
+) AS member_10;
 
 ```
 
