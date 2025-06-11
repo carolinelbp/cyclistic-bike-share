@@ -50,6 +50,7 @@ Memberships are crucial for Cyclistic’s long-term revenue and user loyalty. By
 - Added calculated columns
 - Fixed cell format issues
 - Removed invalid records
+- Removed rides under 5 minutes in length
 - Moved records into the correct month's workbook
 - Checked for duplicate entries
 
@@ -283,20 +284,42 @@ Casual riders fluctuate more in average ride duration than members, taking longe
 
 -- Calculates the distribution of ride lengths, split by user type
 
+WITH ride_duration AS (
+	SELECT
+		m.member_casual AS user_type,
+		EXTRACT(EPOCH FROM t.ride_length) / 60 AS ride_minutes
+	FROM ride_method AS m
+	INNER JOIN ride_time AS t
+		ON m.ride_id = t.ride_id
+),
+bucketed_rides AS (
+	SELECT
+		user_type,
+		CASE
+			WHEN ride_minutes < 10 THEN '5–10 min' -- I already removed rides under 5 mins from my dataset during the initial clean
+			WHEN ride_minutes < 20 THEN '10–20 min'
+			WHEN ride_minutes < 30 THEN '20–30 min'
+			WHEN ride_minutes < 60 THEN '30–60 min'
+			ELSE '60+ min'
+		END AS ride_length_bucket, -- I used these buckets for a histogram
+		CASE
+			WHEN ride_minutes < 10 THEN 1
+			WHEN ride_minutes < 20 THEN 2
+			WHEN ride_minutes < 30 THEN 3
+			WHEN ride_minutes < 60 THEN 4
+			ELSE 5
+		END AS sort_order
+	FROM ride_duration
+)
+
 SELECT
-	m.member_casual, -- this field is the user type
-	CASE
-		WHEN EXTRACT(EPOCH FROM ride_length) / 60 < 10 THEN '5-10 min'
-		WHEN EXTRACT(EPOCH FROM ride_length) / 60 < 20 THEN '10-20 min'
-		WHEN EXTRACT(EPOCH FROM ride_length) / 60 < 30 THEN '20-30 min'
-		WHEN EXTRACT(EPOCH FROM ride_length) / 60 < 60 THEN '30-60 min'
-		ELSE '60+ min'
-	END AS ride_length_bucket, -- I used these buckets for a histogram 
+	user_type,
+	ride_length_bucket,
 	COUNT(*) AS ride_count
-FROM ride_method AS m
-INNER JOIN ride_time AS t
-	ON m.ride_id = t.ride_id
-GROUP BY member_casual, ride_length_bucket;
+FROM bucketed_rides
+GROUP BY user_type, ride_length_bucket, sort_order
+ORDER BY 
+	user_type, sort_order;
 
 ```
 
@@ -336,7 +359,7 @@ SELECT
 FROM ride_method AS m
 INNER JOIN ride_time AS t
 	ON m.ride_id = t.ride_id
-GROUP BY m.member_casual, rideable_type;
+GROUP BY m.member_casual, m.rideable_type;
 
 ```
 
