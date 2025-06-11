@@ -355,7 +355,7 @@ Casual riders spend over twice as long on classic bike rides compared to electri
 SELECT
 	m.member_casual AS user_type,
 	m.rideable_type,
-	ROUND(AVG(EXTRACT(EPOCH FROM t.ride_length) / 60), 2) AS avg_ride_length_minutes -- ride_length was in H:MM:SS format so I converted to minutes
+	ROUND(AVG(EXTRACT(EPOCH FROM t.ride_length) / 60), 0) AS avg_ride_length_minutes -- ride_length was in H:MM:SS format so I converted to minutes
 FROM ride_method AS m
 INNER JOIN ride_time AS t
 	ON m.ride_id = t.ride_id
