@@ -1,29 +1,29 @@
-# 🚲 Unlocking Member Growth: Cyclistic Bike Share User Analysis 🚲
+# 🚲 Behavioral Analysis of U.S. City Bike Share Users 🚲
 
 # Introduction
 ### 📈 Business Task
 
-Identify how casual riders and annual members use fictional bike share service Cyclistic differently. Recommend marketing strategies to convert casual riders into riders with annual memberships.
+Identify how casual riders and annual members use a real-world, anonymized bike share service differently. Recommend marketing strategies to convert casual riders into riders with annual memberships.
 <br><br>
 
 ### 👩‍💼 Target Audience
 
 The key stakeholders are:
-- The Cyclistic Executive team
+- The Company's Executive team
 - The Director of Marketing
 - The Marketing Analytics team
 <br><br>
 
 ### 🚀 Why It Matters
 
-Memberships are crucial for Cyclistic’s long-term revenue and user loyalty. By understanding the behaviors and habits of casual riders, we can tailor strategies to encourage more conversions.
+Memberships are crucial for this bike share service’s long-term revenue and user loyalty. By understanding the behaviors and habits of casual riders, we can tailor strategies to encourage more conversions.
 
 ---
 
 # Data Overview
 ### 🪄 Dataset
 
-12 months of 'Cyclistic' trip data (anonymised data from a Chicago ride share service for 2024).
+12 months of real-world trip data (anonymised from a major U.S. city ride share service for 2024).
 <br><br>
 
 ### 📊 Platforms Used
@@ -88,7 +88,7 @@ This provided great opportunities to hone in on relevant casual user marketing s
 
 ### Most Popular A-to-B Routes
 
-There are no shared top 10 station-to-station trip routes between casual riders and members. When viewed on a map of Chicago, the routes don't inhabit the same areas either. 
+There are no shared top 10 station-to-station trip routes between casual riders and members. When viewed on a map, the routes don't inhabit the same areas either. 
 
 Casual riders ride the most in the Lakefront Trail/tourist zone of Chicago, which suggests that they're taking leisure- or sightseeing-focused trips. 
 
@@ -262,7 +262,7 @@ However, casual riders show clear differences from members in other areas — ta
 
 These patterns support the idea that casual users are taking longer, leisure-based rides, which require more comfort and endurance support.
 
-*Marketing Action*: Emphasize the comfort of Cyclistic bikes. Promote the use of electric bikes for energy-preservation on longer rides. 
+*Marketing Action*: Emphasize the comfort of this company's bikes. Promote the use of electric bikes for energy-preservation on longer rides. 
 <br><br>
 
 
