@@ -4,6 +4,8 @@
 ### 📈 Business Task
 
 Identify how casual riders and annual members use a real-world, anonymized bike share service differently. Recommend marketing strategies to convert casual riders into riders with annual memberships.
+
+_Note: This project is based on publicly available ride data from a U.S. city and was independently expanded beyond the original scope for analysis and business insights._
 <br><br>
 
 ### 👩‍💼 Target Audience
